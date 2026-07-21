@@ -13,6 +13,11 @@ import { PINO_LOGGER_OPTIONS_TOKEN, PinoLoggerInterceptor } from './logger/logge
 import { LoggerModule, PinoLogger } from 'nestjs-pino';
 import { CustomLoggerModule } from './logger/logger.module';
 import { KafkaModule } from './kafka/kafka.module';
+import { KafkaConsumerService } from './kafka/consumer/kafka-consumer.service';
+import { KafkaConsumerInitService } from './kafka/consumer/kafka-consumer-init.service';
+import { KafkaConsumerConfigService } from './kafka/consumer/kafka-consumer-config.service';
+import { KafkaConsumerHandlerService } from './kafka/consumer/kafka-consumer-handler.service';
+import { KafkaConsumerValidator } from './kafka/consumer/kafka-consumer.validator';
 import { CardController as EnrollCardController } from './enrollment/controllers/enroll.controller';
 import { CardController as UnenrollCardController } from './enrollment/controllers/unenroll.controller';
 import { CardService as EnrollCardService } from './enrollment/services/enroll.service';
@@ -45,8 +50,6 @@ import { ActivityLog } from './enrollment/entities/activityLog.model';
   providers: [
     AppService,
     PinoLogger,
-    EnrollCardService,
-    UnenrollCardService,
     {
       provide: PINO_LOGGER_OPTIONS_TOKEN,
       useValue: {
@@ -62,7 +65,14 @@ import { ActivityLog } from './enrollment/entities/activityLog.model';
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
     },
+    KafkaConsumerService,
+    KafkaConsumerInitService,
+    KafkaConsumerConfigService,
+    KafkaConsumerHandlerService,
+    KafkaConsumerValidator,
+    EnrollCardService,
+    UnenrollCardService,
   ],
-  exports: [EnrollCardService, UnenrollCardService],
+  exports: [KafkaConsumerService, EnrollCardService, UnenrollCardService],
 })
 export class AppModule {}

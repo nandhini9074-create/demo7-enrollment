@@ -10,7 +10,7 @@ paths:
   /card/enroll:
     post:
       summary: Enroll a card
-      description: Enrolls a specific card from the user.
+      description: Enrolls a specific card for a user.
       operationId: enrollCard
       requestBody:
         required: true
@@ -34,7 +34,7 @@ paths:
   /card/unenroll:
     post:
       summary: Unenroll a card
-      description: Unenrolls a specific card from the user.
+      description: Unenrolls a specific card for a user.
       operationId: unenrollCard
       requestBody:
         required: true
@@ -66,10 +66,10 @@ components:
       properties:
         customerId:
           type: string
-          description: ID of the customer.
+          description: Unique identifier for the customer.
         schemeUserId:
           type: string
-          description: ID of the scheme user.
+          description: Unique identifier for the user in the scheme.
         cardDetails:
           type: array
           items:
@@ -83,13 +83,13 @@ components:
       properties:
         cardId:
           type: string
-          description: ID of the card.
+          description: Unique identifier for the card.
         schemeCardId:
           type: string
-          description: ID of the scheme card.
+          description: Unique identifier for the card in the scheme.
         cardLast4:
           type: string
-          description: Last 4 digits of the card (optional).
+          description: Last 4 digits of the card.
         isNewCard:
           type: boolean
           description: Indicates if the card is new.
@@ -106,13 +106,13 @@ components:
       properties:
         cardId:
           type: string
-          description: ID of the supplementary card.
+          description: Unique identifier for the supplementary card.
         schemeCardId:
           type: string
-          description: ID of the scheme card for the supplementary card.
+          description: Unique identifier for the supplementary card in the scheme.
         cardLast4:
           type: string
-          description: Last 4 digits of the supplementary card (optional).
+          description: Last 4 digits of the supplementary card.
         isNewCard:
           type: boolean
           description: Indicates if the supplementary card is new.
@@ -132,7 +132,7 @@ components:
       properties:
         mimojoCardId:
           type: string
-          description: ID of the Mimojo card to be unenrolled.
+          description: Unique identifier for the card in the Mimojo system.
         replaceSchemeCardId:
           type: string
           description: Replacement scheme card ID (optional).
@@ -159,4 +159,4 @@ components:
           description: Error message.
         error:
           type: string
-          description: Error details.
+          description: Error type.

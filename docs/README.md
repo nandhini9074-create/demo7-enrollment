@@ -1,10 +1,24 @@
+```markdown
 # Demo7 Enrollment API
 
 ## Overview
-The Demo7 Enrollment API provides endpoints for managing card enrollments and unenrollments for users. This service is designed to handle operations such as enrolling new cards and removing existing cards from a user's account.
+
+The Demo7 Enrollment API provides endpoints to manage card enrollments and unenrollments for users. This service allows users to enroll their cards into the system and remove them when necessary.
+
+## Features
+
+- Enroll a card for a user.
+- Unenroll a card for a user.
 
 ## Setup
-To set up the project locally, follow these steps:
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- PostgreSQL database
+
+### Installation
 
 1. Clone the repository:
    ```bash
@@ -17,23 +31,34 @@ To set up the project locally, follow these steps:
    npm install
    ```
 
-3. Start the application:
+3. Configure environment variables:
+   Create a `.env` file in the root directory and define the following variables:
+   ```env
+   NODE_ENV=development
+   SERVER_HTTP_PORT=3000
+   SERVER_HTTP_HOST=localhost
+   DB_DIALECT=postgres
+   DB_PORT=5432
+   DB_DATABASE=your_database_name
+   DB_HOST=localhost
+   DB_USERNAME=your_database_user
+   DB_PASSWORD=your_database_password
+   IS_SWAGGER_ENABLED=true
+   GRAVITEE_ENDPOINT=http://localhost:3000
+   ```
+
+4. Run the application:
    ```bash
    npm run start
    ```
 
-## Required Environment Variables
-The following environment variables must be configured:
+5. Access the API documentation:
+   Visit `http://localhost:3000/api-docs` in your browser.
 
-- `NODE_ENV`: Environment mode (e.g., `development`, `production`).
-- `SERVER_HTTP_PORT`: Port number for the HTTP server.
-- `SERVER_HTTP_HOST`: Hostname for the HTTP server.
-- `IS_SWAGGER_ENABLED`: Enable Swagger documentation (`true` or `false`).
-- `GRAVITEE_ENDPOINT`: URL for the Gravitee API Gateway.
+## Endpoints
 
-## API Endpoints
+### 1. Enroll a Card
 
-### Enroll a Card
 **POST** `/card/enroll`
 
 - **Description**: Enrolls a specific card for a user.
@@ -60,11 +85,12 @@ The following environment variables must be configured:
     ]
   }
   ```
-- **Response**:
+- **Responses**:
   - **200**: Card enrolled successfully.
   - **400**: Bad request.
 
-### Unenroll a Card
+### 2. Unenroll a Card
+
 **POST** `/card/unenroll`
 
 - **Description**: Unenrolls a specific card for a user.
@@ -79,12 +105,27 @@ The following environment variables must be configured:
     ]
   }
   ```
-- **Response**:
+- **Responses**:
   - **200**: Card unenrolled successfully.
   - **400**: Bad request.
 
-## Documentation
-Swagger documentation is available at `/api-docs` when `IS_SWAGGER_ENABLED` is set to `true`.
+## Development
+
+### Running Tests
+
+To run tests, use the following command:
+```bash
+npm run test
+```
+
+### Linting
+
+To lint the codebase, use:
+```bash
+npm run lint
+```
 
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+```
