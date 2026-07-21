@@ -20,11 +20,17 @@ paths:
               $ref: '#/components/schemas/EnrollCardDto'
       responses:
         '200':
-          description: Card enrolled successfully
+          description: Card enrolled successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /card/unenroll:
     post:
       summary: Unenroll a card
@@ -38,11 +44,17 @@ paths:
               $ref: '#/components/schemas/UnenrollCardDto'
       responses:
         '200':
-          description: Card unenrolled successfully
+          description: Card unenrolled successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     EnrollCardDto:
@@ -54,10 +66,10 @@ components:
       properties:
         customerId:
           type: string
-          description: The ID of the customer.
+          description: ID of the customer.
         schemeUserId:
           type: string
-          description: The ID of the user in the scheme.
+          description: ID of the scheme user.
         cardDetails:
           type: array
           items:
@@ -71,13 +83,13 @@ components:
       properties:
         cardId:
           type: string
-          description: The ID of the card.
+          description: ID of the card.
         schemeCardId:
           type: string
-          description: The ID of the card in the scheme.
+          description: ID of the scheme card.
         cardLast4:
           type: string
-          description: The last 4 digits of the card.
+          description: Last 4 digits of the card (optional).
         isNewCard:
           type: boolean
           description: Indicates if the card is new.
@@ -94,13 +106,13 @@ components:
       properties:
         cardId:
           type: string
-          description: The ID of the supplementary card.
+          description: ID of the supplementary card.
         schemeCardId:
           type: string
-          description: The ID of the supplementary card in the scheme.
+          description: ID of the scheme card for the supplementary card.
         cardLast4:
           type: string
-          description: The last 4 digits of the supplementary card.
+          description: Last 4 digits of the supplementary card (optional).
         isNewCard:
           type: boolean
           description: Indicates if the supplementary card is new.
@@ -120,10 +132,10 @@ components:
       properties:
         mimojoCardId:
           type: string
-          description: The ID of the card to be unenrolled.
+          description: ID of the Mimojo card to be unenrolled.
         replaceSchemeCardId:
           type: string
-          description: The ID of the replacement scheme card.
+          description: Replacement scheme card ID (optional).
     BaseResponse:
       type: object
       properties:
@@ -136,3 +148,15 @@ components:
         data:
           type: object
           description: Response data.
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code.
+        message:
+          type: string
+          description: Error message.
+        error:
+          type: string
+          description: Error details.

@@ -1,24 +1,10 @@
-```markdown
 # Demo7 Enrollment API
 
 ## Overview
-
-The Demo7 Enrollment API provides endpoints to manage card enrollments and unenrollments for users. This service allows users to enroll their cards into a system and remove them when necessary.
-
-## Features
-
-- **Enroll a Card**: Add a card to the user's account.
-- **Unenroll a Card**: Remove a card from the user's account.
+The Demo7 Enrollment API provides endpoints for managing card enrollments and unenrollments for users. This service is designed to handle operations such as enrolling new cards and removing existing cards from a user's account.
 
 ## Setup
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-- A running instance of the database (PostgreSQL)
-
-### Installation
+To set up the project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
@@ -31,41 +17,26 @@ The Demo7 Enrollment API provides endpoints to manage card enrollments and unenr
    npm install
    ```
 
-3. Set up the environment variables:
-   Create a `.env` file in the root directory and configure the following variables:
-   ```env
-   NODE_ENV=development
-   SERVER_HTTP_PORT=3000
-   SERVER_HTTP_HOST=localhost
-   DB_DIALECT=postgres
-   DB_PORT=5432
-   DB_DATABASE=your_database_name
-   DB_HOST=localhost
-   DB_USERNAME=your_database_user
-   DB_PASSWORD=your_database_password
-   IS_SWAGGER_ENABLED=true
-   ```
-
-4. Run database migrations:
+3. Start the application:
    ```bash
-   npm run migrate
+   npm run start
    ```
 
-5. Start the server:
-   ```bash
-   npm run start:dev
-   ```
+## Required Environment Variables
+The following environment variables must be configured:
 
-6. Access the API documentation:
-   Open [http://localhost:3000/api-docs](http://localhost:3000/api-docs) in your browser.
+- `NODE_ENV`: Environment mode (e.g., `development`, `production`).
+- `SERVER_HTTP_PORT`: Port number for the HTTP server.
+- `SERVER_HTTP_HOST`: Hostname for the HTTP server.
+- `IS_SWAGGER_ENABLED`: Enable Swagger documentation (`true` or `false`).
+- `GRAVITEE_ENDPOINT`: URL for the Gravitee API Gateway.
 
-## Endpoints
+## API Endpoints
 
-### 1. Enroll a Card
-
+### Enroll a Card
 **POST** `/card/enroll`
 
-- **Description**: Enrolls a specific card from the user.
+- **Description**: Enrolls a specific card for a user.
 - **Request Body**:
   ```json
   {
@@ -90,19 +61,13 @@ The Demo7 Enrollment API provides endpoints to manage card enrollments and unenr
   }
   ```
 - **Response**:
-  ```json
-  {
-    "statusCode": 200,
-    "message": "Success",
-    "data": {}
-  }
-  ```
+  - **200**: Card enrolled successfully.
+  - **400**: Bad request.
 
-### 2. Unenroll a Card
-
+### Unenroll a Card
 **POST** `/card/unenroll`
 
-- **Description**: Unenrolls a specific card from the user.
+- **Description**: Unenrolls a specific card for a user.
 - **Request Body**:
   ```json
   {
@@ -115,30 +80,11 @@ The Demo7 Enrollment API provides endpoints to manage card enrollments and unenr
   }
   ```
 - **Response**:
-  ```json
-  {
-    "statusCode": 200,
-    "message": "Success",
-    "data": {}
-  }
-  ```
+  - **200**: Card unenrolled successfully.
+  - **400**: Bad request.
 
-## Environment Variables
-
-| Variable                  | Description                          | Default Value |
-|---------------------------|--------------------------------------|---------------|
-| `NODE_ENV`                | Application environment             | `development` |
-| `SERVER_HTTP_PORT`        | Server port                         | `3000`        |
-| `SERVER_HTTP_HOST`        | Server host                         | `localhost`   |
-| `DB_DIALECT`              | Database dialect (e.g., postgres)   | `postgres`    |
-| `DB_PORT`                 | Database port                       | `5432`        |
-| `DB_DATABASE`             | Database name                       | -             |
-| `DB_HOST`                 | Database host                       | -             |
-| `DB_USERNAME`             | Database username                   | -             |
-| `DB_PASSWORD`             | Database password                   | -             |
-| `IS_SWAGGER_ENABLED`      | Enable Swagger documentation        | `true`        |
+## Documentation
+Swagger documentation is available at `/api-docs` when `IS_SWAGGER_ENABLED` is set to `true`.
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
+This project is licensed under the MIT License.

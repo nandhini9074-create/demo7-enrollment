@@ -32,7 +32,7 @@ CREATE TABLE user_cards (
 CREATE INDEX idx_user_cards_user_id_scheme_card_id ON user_cards (user_id, scheme_card_id);
 
 CREATE TABLE activity_logs (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id SERIAL PRIMARY KEY,
     trace_id UUID NOT NULL,
     step VARCHAR NOT NULL,
     request_data JSONB,

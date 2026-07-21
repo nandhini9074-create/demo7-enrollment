@@ -44,9 +44,9 @@ import { ActivityLog } from './enrollment/entities/activityLog.model';
   controllers: [AppController, EnrollCardController, UnenrollCardController],
   providers: [
     AppService,
+    PinoLogger,
     EnrollCardService,
     UnenrollCardService,
-    PinoLogger,
     {
       provide: PINO_LOGGER_OPTIONS_TOKEN,
       useValue: {
