@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { validate } from '../env.validation';
+import { validate } from 'env.validation';
 import { appConfig, grafanaCredentials, databaseConfig, kafkaConfig, servicesURLs } from '../config/server.config';
 import { databaseBuilder } from './common/helpers/database';
 import { AppController } from './app.controller';
