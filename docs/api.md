@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:3000
-    description: Local Development Server
+    description: Local development server
 paths:
   /card/enroll:
     post:
@@ -20,7 +20,7 @@ paths:
               $ref: '#/components/schemas/EnrollCardDto'
       responses:
         '200':
-          description: Card successfully enrolled.
+          description: Card enrolled successfully
           content:
             application/json:
               schema:
@@ -38,7 +38,7 @@ paths:
               $ref: '#/components/schemas/UnenrollCardDto'
       responses:
         '200':
-          description: Card successfully unenrolled.
+          description: Card unenrolled successfully
           content:
             application/json:
               schema:
@@ -54,10 +54,10 @@ components:
       properties:
         customerId:
           type: string
-          description: ID of the customer.
+          description: The ID of the customer.
         schemeUserId:
           type: string
-          description: ID of the user in the scheme.
+          description: The ID of the user in the scheme.
         cardDetails:
           type: array
           items:
@@ -71,13 +71,13 @@ components:
       properties:
         cardId:
           type: string
-          description: ID of the card.
+          description: The ID of the card.
         schemeCardId:
           type: string
-          description: ID of the card in the scheme.
+          description: The ID of the card in the scheme.
         cardLast4:
           type: string
-          description: Last 4 digits of the card.
+          description: The last 4 digits of the card.
         isNewCard:
           type: boolean
           description: Indicates if the card is new.
@@ -94,13 +94,13 @@ components:
       properties:
         cardId:
           type: string
-          description: ID of the supplementary card.
+          description: The ID of the supplementary card.
         schemeCardId:
           type: string
-          description: ID of the supplementary card in the scheme.
+          description: The ID of the supplementary card in the scheme.
         cardLast4:
           type: string
-          description: Last 4 digits of the supplementary card.
+          description: The last 4 digits of the supplementary card.
         isNewCard:
           type: boolean
           description: Indicates if the supplementary card is new.
@@ -120,19 +120,19 @@ components:
       properties:
         mimojoCardId:
           type: string
-          description: ID of the card in the Mimojo system.
+          description: The ID of the card to be unenrolled.
         replaceSchemeCardId:
           type: string
-          description: ID of the replacement card in the scheme.
+          description: The ID of the replacement scheme card.
     BaseResponse:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Indicates if the operation was successful.
+        statusCode:
+          type: integer
+          description: HTTP status code.
         message:
           type: string
           description: Response message.
         data:
           type: object
-          description: Additional data returned by the operation.
+          description: Response data.
